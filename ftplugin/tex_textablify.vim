@@ -10,7 +10,7 @@ if !exists("g:TexTabulify_footer")
 	let g:TexTabulify_footer = '\end{tabular}'
 endif
 
-function TexTabulify() range
+function s:TexTabulify() range
 python << EOF
 def formatline(line):
     """ Format line to table style
@@ -33,4 +33,4 @@ EOF
 endfunction
 
 
-command -range TexTabulify <line1>,<line2>call TexTabulify()
+command -range -buffer TexTabulify <line1>,<line2>call s:TexTabulify()

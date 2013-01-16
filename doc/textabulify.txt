@@ -1,0 +1,10 @@
+textabulify.txt	For Vim version 7.3	Last change: 2012 Janurary 16
+
+TexTabulify
+
+A vim plugin for formating csv style table into latex codes.
+
+Usage: Select lines to be tabulified and call TexTabulify()
+
+
+vim:tw=78:ts=8:ft=help:norl:

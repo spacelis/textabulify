@@ -15,6 +15,8 @@ python << EOF
 def formatline(line):
     """ Format line to table style
     """
+    for ch in '&%$#_{}~^\\':
+        line = line.replace(ch, '\\' + ch)
     if '|' in line:
         return line.replace('|', ' & ')
     elif ',' in line:

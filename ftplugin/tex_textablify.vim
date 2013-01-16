@@ -33,4 +33,4 @@ EOF
 endfunction
 
 
-command TexTabulify call TexTabulify()
+command -range TexTabulify call <line1, line2>TexTabulify()

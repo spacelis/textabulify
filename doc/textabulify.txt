@@ -4,7 +4,7 @@ TexTabulify
 
 A vim plugin for formating csv style table into latex codes.
 
-Usage: Select lines to be tabulified and call TexTabulify()
+Usage: Select lines to be tabulified and use command TexTabulify()
 
 
 vim:tw=78:ts=8:ft=help:norl:

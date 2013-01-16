@@ -1,6 +1,6 @@
 textabulify.txt	For Vim version 7.3	Last change: 2012 Janurary 16
 
-TexTabulify
+TexTabulify                                        *textabulify*
 
 A vim plugin for formating csv style table into latex codes.
 

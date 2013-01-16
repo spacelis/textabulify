@@ -4,7 +4,7 @@ endif
 let b:TexTabulify = 1
 
 if !exists("g:TexTabulify_header")
-	let g:TexTabulify_header = '\begin{tabular}{%s}'
+	let g:TexTabulify_header = '\begin{tabular}{%s} \hline'
 endif
 if !exists("g:TexTabulify_footer")
 	let g:TexTabulify_footer = '\end{tabular}'
@@ -25,7 +25,7 @@ def formatline(line):
 
 rbuf = vim.current.buffer.range(int(vim.eval('a:firstline')), int(vim.eval('a:lastline')))
 for i in range(len(rbuf)):
-    rbuf[i] = formatline(rbuf[i]) + r' \\'
+    rbuf[i] = formatline(rbuf[i]) + r' \\ \hline'
 cols = rbuf[-1].count('&') + 1
 rbuf.append(vim.eval('g:TexTabulify_header') % '|'.join([''] + ['c'] * cols + ['']), 0)
 rbuf.append(vim.eval('g:TexTabulify_footer '))

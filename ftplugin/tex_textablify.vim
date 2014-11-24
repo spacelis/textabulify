@@ -39,7 +39,7 @@ EOF
 endfunction
 
 if !exists("g:TexRuleTabulify_header")
-	let g:TexTabulify_header = '\begin{tabular}{%s} \toprule'
+	let g:TexRuleTabulify_header = '\begin{tabular}{%s} \toprule'
 endif
 
 function! s:TexRuleTabulify() range

@@ -66,7 +66,7 @@ for i in range(len(rbuf)):
   rbuf[i] = formatline(rbuf[i]) + (r' \\' if i != 0 else r' \\ \midrule') 
 rbuf[-1] = rbuf[-1] + r'\bottomrule'
 cols = rbuf[-1].count('&') + 1
-rbuf.append(vim.eval('g:TexRuleTabulify_header') % '|'.join([''] + ['c'] * cols + ['']), 0)
+rbuf.append(vim.eval('g:TexRuleTabulify_header') % ('c' * cols), 0)
 rbuf.append(vim.eval('g:TexTabulify_footer '))
 EOF
 endfunction

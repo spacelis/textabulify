@@ -38,5 +38,38 @@ rbuf.append(vim.eval('g:TexTabulify_footer '))
 EOF
 endfunction
 
+if !exists("g:TexRuleTabulify_header")
+	let g:TexTabulify_header = '\begin{tabular}{%s} \toprule'
+endif
+
+function! s:TexRuleTabulify() range
+python << EOF
+import re
+def formatline(line):
+    """ Format line to table style
+    """
+    SPACE = re.compile(r'\s+')
+    for ch in '&%$#_{}~^\\':
+        line = line.replace(ch, '\\' + ch)
+    if '|' in line:
+        return line.replace('|', ' & ')
+    elif ',' in line:
+        return line.replace(',', ' & ')
+    elif ' ' in line:
+        return SPACE.sub(' & ', line)
+    elif '\t' in line:
+        return SPACE.sub(' & ', line)
+    return line
+
+rbuf = vim.current.buffer.range(int(vim.eval('a:firstline')), int(vim.eval('a:lastline')))
+for i in range(len(rbuf)):
+  rbuf[i] = formatline(rbuf[i]) + (r' \\' if i != 0 else r' \\ \midrule') 
+rbuf[-1] = rbuf[-1] + r'\\ \bottomrule'
+cols = rbuf[-1].count('&') + 1
+rbuf.append(vim.eval('g:TexRuleTabulify_header') % '|'.join([''] + ['c'] * cols + ['']), 0)
+rbuf.append(vim.eval('g:TexTabulify_footer '))
+EOF
+endfunction
 
 command -range -buffer TexTabulify <line1>,<line2>call s:TexTabulify()
+command -range -buffer TexRuleTabulify <line1>,<line2>call s:TexRuleTabulify()
